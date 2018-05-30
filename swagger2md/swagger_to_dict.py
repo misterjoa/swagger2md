@@ -31,14 +31,13 @@ def tag_code(text, lang_name=""):
 
 def build_section_info(info_dict):
 
-    result = []
-    result.append(tag_section(info_dict["title"], 1))
-
+    res = []
+    res.append(tag_section(info_dict["title"], 1))
     for key in ["description", "version"]:
-        result.append(tag_section(key, 2))
-        result.append(info_dict[key])
-
-    return result
+        res.append(tag_section(key, 2))
+        res.append(info_dict[key])
+        res.append("\n")
+    return res
 
 
 REST_VERBS = ["get", "post", "put", "patch", "delete"]
@@ -46,14 +45,13 @@ REST_VERBS = ["get", "post", "put", "patch", "delete"]
 
 def get_table_responses(responses_dict):
 
-    result = []
-    result.append("| Code | Description |")
-    result.append("| --- | --- |")
-
+    res = []
+    res.append("| Code | Description |")
+    res.append("| --- | --- |")
     for key, sub_dict in responses_dict.items():
-        result.append("|".join(["", key, sub_dict["description"], ""]))
-
-    return result
+        res.append("|".join(["", key, sub_dict["description"], ""]))
+    res.append("\n")
+    return res
 
 
 def get_parameters_table(prm_list_of_dict):
@@ -66,7 +64,8 @@ def get_parameters_table(prm_list_of_dict):
         for prm_dict in prm_list_of_dict:
             res.append("|".join(["", "|".join([str(prm_dict[key]) for key in key_list]),""]))
     else:
-        return ["none"]
+        res = ["none"]
+    res.append("\n")
     return res
 
 
@@ -76,7 +75,6 @@ def get_list_italic(word_list, default="None"):
         var_list = ", ".join(word_list)
     else:
         var_list = default
-
     return tag_italic(var_list)
 
 
@@ -84,13 +82,13 @@ def get_section_with_val(src_dict, key, level, default="None"):
 
     res = []
     res.append(tag_section(key.capitalize(), level))
-
     if not isinstance(src_dict.get(key), str):
         res.append(default)
     elif isinstance(src_dict.get(key), str):
         res.append(src_dict.get(key, default))
     elif isinstance(src_dict.get(key), list):
         res.append(get_list_italic(src_dict.get(key)))
+    res.append("\n")
 
     return res
 
@@ -122,6 +120,7 @@ def build_path_section(path_name, path_dict):
         if path_dict.get(verb):
             res.append(tag_section(verb, 3))
             res.extend(get_verb_md(path_dict[verb]))
+            res.append("\n")
 
     return res
 
