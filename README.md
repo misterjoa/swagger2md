@@ -4,7 +4,7 @@ No simple swagger to markdown converter currently exists in python.
 In order not to introduce java dependencies from popular projects when doing a python project, I created a very simple converter.
 
 ```
-swagger2md swagger.json > swagger.md
+./swagger2md.py swagger.json swagger.md
 ```
 
 # Convert md to pdf 
