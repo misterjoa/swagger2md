@@ -2,6 +2,7 @@ from json import load as json_load
 
 """
 Supports swagger v2
+Author : Joachim Kruithof 2018
 """
 
 

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# Author : Joachim Kruithof
+
 import sys
 
 from swagger2md.swagger_to_dict import sw_to_md
