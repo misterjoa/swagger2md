@@ -17,11 +17,21 @@ Then you can use a md to pdf converter like pandoc to produce a pdf file !
 apt-get install pandoc texlive-latex-recommended texlive-fonts-recommended
 ```
 
-Then install python dependencies :
+# Usage
+
+## Basic styling
 
 ```
-pipenv install
-pipenv shell 
+pandoc -s swagger.md -o swagger.pdf
 ```
 
-And use `md2pdf`
+## css styling
+
+If you want to style using md -> html converter
+
+```
+apt install wkhtmltopdf
+pandoc -t html5 -c swagger.css --toc -s swagger.md -o swagger.pdf
+```
+
+An example `swagger.css` is included, modify it if you need to !
